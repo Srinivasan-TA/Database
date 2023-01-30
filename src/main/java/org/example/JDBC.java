@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 class DC {
 
 
-    public static void main(String args[]) throws SQLException {
+    public static void main(String[] args) throws SQLException {
         DC n = DC.getInstance();
         Logger l = Logger.getLogger("com.api.jar");
         String url = "jdbc:mysql://localhost:3306/jdbc";
@@ -54,7 +54,7 @@ public void connect(String url,String user,String pass){
         public void closeconnection() throws SQLException {
             connection.close();
         }
-        public static DC getInstance() throws SQLException {
+        public static DC getInstance(){
             if (instance == null) {
                 instance = new DC();
             }
