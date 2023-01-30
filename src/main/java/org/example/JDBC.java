@@ -2,6 +2,9 @@ package org.example;
 
 import java.sql.*;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
+
 class DC {
 
 
@@ -45,15 +48,15 @@ class DC {
             return connection;
         }
 public void connect(String url,String user,String pass){
+            Logger l = Logger.getLogger("com.api.jar");
     try {
-        Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(url, user, pass);
-    } catch (Exception e) {
-        e.printStackTrace();
+       connection = DriverManager.getConnection(url, user, pass);
+    } catch(SQLException e){
+        l.info((Supplier<String>) e);
     }
 }
-        public void closeconnection(){
-            closeconnection();
+        public void closeconnection() throws SQLException {
+            connection.close();
         }
         public static DC getInstance() throws SQLException {
             if (instance == null) {
