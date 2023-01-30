@@ -10,23 +10,19 @@ class DC {
 
     public static void main(String args[]) throws SQLException {
         DC n = DC.getInstance();
-
+        Logger l = Logger.getLogger("com.api.jar");
         String url = "jdbc:mysql://localhost:3306/jdbc";
         String user = "root";
-        System.out.println("Enter the password");
+        l.info("Enter the password");
         Scanner sc = new Scanner(System.in);
         String pass = sc.next();
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("Select * from student");
         while (resultSet.next()) {
-            System.out.println(resultSet.getString("name"));
-            System.out.println("DB Connection Working");
+            l.info(resultSet.getString("name"));
+            l.info("DB Connection Working");
         }
-        /*} catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
 
         int ch = sc.nextInt();
         switch (ch) {
